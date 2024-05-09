@@ -1,4 +1,4 @@
-import Solve2
+import Solve
 import threading
 import json
 from colorama import Fore
