@@ -36,12 +36,3 @@ def threads():
     for t in threads:
         t.join()
 
-
-def hcap():
- 
- result = Solve2.HCaptcha(
-     '4c672d35-0701-42b2-88c3-78380b0db560', # siteKey
-     'https://discord.com/' # URL Website
- )
- print(result)
-recap()
