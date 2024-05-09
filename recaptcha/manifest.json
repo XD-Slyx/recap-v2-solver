@@ -1,0 +1,50 @@
+{
+   "action": {
+      "default_popup": "popup.html",
+      "default_title": "rektCaptcha"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "recaptcha.js" ],
+      "match_about_blank": false,
+      "matches": [ "*://*.google.com/recaptcha/api2/*", "*://*.google.com/recaptcha/enterprise/*", "*://*.recaptcha.net/recaptcha/api2/*", "*://*.recaptcha.net/recaptcha/enterprise/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "recaptcha-visibility.js" ],
+      "match_about_blank": false,
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+   } ],
+   "declarative_net_request": {
+      "rule_resources": [ {
+         "enabled": true,
+         "id": "ruleset_1",
+         "path": "rules.json"
+      } ]
+   },
+   "description": "Automatically solve reCaptcha using AI.",
+   "host_permissions": [ "*://*.google.com/recaptcha/*", "*://*.recaptcha.net/recaptcha/*" ],
+   "icons": {
+      "128": "icons/icon_128.png",
+      "16": "icons/icon_16.png",
+      "32": "icons/icon_32.png",
+      "48": "icons/icon_48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmaqxl5mZcMgCjFPcBYgh1BR5DEMCdi/0omPZrphtHPk6ikeXj3HjacNWBQt9uKHBHB+OwZP1uXgj6NRIwdFflk1g1o1VvqEWplt44vC2eueJuqUNZqBER/ijV4mG035s1LOAvG73VbE2at8C9Dcr6eR24fcO7LgCyNZwJfReqmDEAnOYNpJQn7K6++viwje8DwH2+QOyjA4LXYV4UKztDPfk6uVfj8Ydyj1nLV7t2Pzonmr6dTQmhvhmbOQ0i7na0EGBkA/gAmQuxJSoiyQGFYZ4dpUXwiT8kvxff0vGJ1TErUFPu6YCa6zn6hqWvHvgz3EtFxzvALUWYck5VjBcfwIDAQAB",
+   "manifest_version": 3,
+   "name": "rektCaptcha: reCaptcha Solver",
+   "permissions": [ "storage", "declarativeNetRequest" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.1.0",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "dist/*" ]
+   }, {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "models/*" ]
+   } ]
+}
