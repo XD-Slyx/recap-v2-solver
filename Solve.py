@@ -1,4 +1,4 @@
-# ReCaptcha
+# https://discord.gg/HK9gszBDDy
 import undetected_chromedriver as webdriver
 import os, time, json
 from selenium.webdriver.chrome.options import Options
@@ -44,16 +44,7 @@ chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 
 
-def chrome_proxy(user: str, password: str, endpoint: str) -> dict:
-    wire_options = {
-        "proxy": {
-            "http": f"http://{user}:{password}@{endpoint}",
-            "https": f"https://{user}:{password}@{endpoint}",
-        }
-    }
 
-    return wire_options
-proxies = chrome_proxy(USERNAME, PASSWORD, ENDPOINT)
 startzeit = None
 def start():
     global startzeit
@@ -64,17 +55,11 @@ def end():
 def RunProfile(type):
     # chrome://version/
     profile = 'C:\\Users\\abdul\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 16'
-    options = Options()
-    if type == 'hcaptcha':
-        chrome_options.add_argument(f'--load-extension={os.path.abspath("hcaptcha")}')
-    else:
-        options.add_argument(f'--load-extension={os.path.abspath("hekt2")}')
+
     chrome_options.add_argument(f'--load-extension={os.path.abspath("recaptcha")}')
 
-    options.add_argument("--headless")
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3")
     driver = webdriver.Chrome(options=chrome_options)
-    #driver = webdriver.Chrome(options=chrome_options, seleniumwire_options=proxies)
+
     driver.minimize_window()
     print(f"{Fore.RESET}{Fore.MAGENTA}[QUASAR-SOLVER]{Fore.WHITE} Started recaptcha v2 Task")
     return driver
@@ -98,7 +83,6 @@ def ReCaptcha(key, url):
     """.format(key)
 
     driver = RunProfile('recaptcha')
-    # driver.execute_script("window.open('" +url+ "')")
     driver.get(url)
 
     while True:
